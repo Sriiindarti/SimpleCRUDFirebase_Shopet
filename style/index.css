@@ -1,0 +1,44 @@
+:root
+{
+      --blue: #287bff;
+      --white: #fff;
+      --softGrey: #ebebeb;
+      --black1 : #222;
+      --black2 : #999;
+}
+
+main {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+}
+
+.kotak {
+      width: 400px;
+      border: solid 1px var(--softGrey);
+      border-radius: 24px;
+      padding: 3rem 4rem;
+      background-color: var(--white);
+}
+
+button{
+      width: 270px;
+      height: 110px;
+      margin: 20px 0;
+}
+
+a{
+      text-decoration: none;
+      font-weight: 500;
+}
+
+a:hover{
+      color: var(--white);
+}
+
+.icon{
+      font-size: 32px;
+}

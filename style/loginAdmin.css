@@ -1,0 +1,48 @@
+:root
+{
+      --blue: #287bff;
+      --white: #fff;
+      --softGrey: #ebebeb;
+      --black1 : #222;
+      --black2 : #999;
+}
+
+body{
+      background-color: var(--blue);
+}
+main {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+form {
+      width: 400px;
+      border: solid 1px var(--softGrey);
+      padding: 3rem 4rem;
+      background-color: var(--white);
+      border-radius: 32px;
+}
+
+img{
+      width: 25%;
+      margin-bottom: 0.5rem;
+}
+h1{
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 16px;
+}
+
+label{
+      margin-top: 8px;
+      font-size: 12px;
+}
+
+button {
+      margin-top: 1.5rem;
+      width: 100%;
+}

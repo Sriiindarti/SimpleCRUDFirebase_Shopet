@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- BOOTSTRAP CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+      <!-- STYLE CSS -->
+      <link rel="stylesheet" href="style/loginAdmin.css">
+
+      <!-- TITLE -->
+      <title> Admin Login </title>
+</head>
+
+<body>
+      <!-- FORM LOGIN -->
+      <main>
+            <form>
+                  <div style="text-align: center;">
+                        <img src="image/shopetlogo.png">
+                        <h1>LOGIN DASHBOARD</h1>
+                  </div>
+
+                  <label for="email" class="form-label"><b>Email</b></label>
+                  <input class="form-control" type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                  <label class="form-label"><b>Password</b></label>
+                  <input class="form-control" type="password" placeholder="Password" name="psw" id="psw" required>
+
+
+                  <button type="button" class="btn btn-warning" id="submitData" name="submitData"
+                        class="registerbtn">Login</button>
+            </form>
+      </main>
+
+
+
+      <!-- SCRIPT BOOTSRAP AND POPPER -->
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+      </script>
+
+
+      <!-- ICON IONS -->
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+      <!-- PROCESS LOGIN -->
+      <script type="module">
+
+            // ------------------------IMPORT FUNCTION FROM SDK------------------------//
+      
+            import 
+            {
+                  initializeApp
+            }
+            from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+            import 
+            {
+                getAuth,
+                createUserWithEmailAndPassword,
+                signInWithEmailAndPassword,
+                signOut
+            }
+            from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+            import {
+                  getDatabase, set, ref, update
+            }
+            from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+      
+            
+            // ------------------------IMPORT FUNCTION FROM SDK------------------------//
+        
+      
+      
+      
+            // -----------------------------CONFIGURATION-----------------------------//
+      
+            var firebaseConfig = {
+            apiKey: "AIzaSyDocRHdpm4YcGw5I057yRwYztLW_S5qCyg",
+            authDomain: "shopet-644e8.firebaseapp.com",
+            databaseURL: "https://shopet-644e8-default-rtdb.firebaseio.com/",
+            projectId: "shopet-644e8",
+            storageBucket: "shopet-644e8.appspot.com",
+            messagingSenderId: "367211419029",
+            appId: "1:367211419029:web:bfc9b34565d21c43ee529c",
+            measurementId: "G-T11Q937JFK"
+            };
+            
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth();
+            const database = getDatabase(app);
+      
+            // -----------------------------CONFIGURATION-----------------------------//
+        
+      
+      
+      
+            // ---------------------------BUTTON PROCESS----------------------------//
+      
+            submitData.addEventListener('click', (e) => {
+        
+                  var email = document.getElementById('email').value;
+                  var password = document.getElementById('psw').value;
+      
+                  e.preventDefault();
+         
+                  if (email == "owner@gmail.com") {
+                        var lgDate = new Date();
+                        update(ref(database, 'users/' + "INI OWNER"), {
+                        last_login: lgDate, email, status:"Owner"
+                        })
+      
+                        .then(() => {
+                              alert("Selamat Datang Owner")
+                              location.href = "dashboardOwner.html";                              
+                        })    
+                  } 
+                  else { 
+                        // log in user
+                        signInWithEmailAndPassword(auth, email, password, status)
+                        .then((userCredential) => {
+      
+                              const user = userCredential.user;
+      
+                              var lgDate = new Date();
+                              update(ref(database, 'users/' + user.uid + "INI ADMIN"), {
+                              last_login: lgDate, email, password, status:"Admin"
+                              })
+      
+                              .then(() => {
+                                    alert("Selamat Datang Admin")
+                                    location.href = "dashboardAdmin.html";
+                                    
+                              })
+                        })
+      
+                        .catch((error) => {
+                              alert("Pastikan Form Terisi dan Benar");
+                        });
+                  }  
+            });
+      
+            // ---------------------------BUTTON PROCESS----------------------------//
+      
+      </script>
+</body>
+
+</html>

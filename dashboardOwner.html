@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- BOOTSTRAP CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+      <!-- STYLE CSS -->
+      <link rel="stylesheet" href="style/addAdmin.css">
+
+      <!-- TITLE -->
+      <title> Dashboard Owner </title>
+</head>
+
+<body>
+
+      <!-- SIDEBAR START -->
+      <div class="containerr">
+            <div class="navigation">
+                  <ul>
+                        <li>
+                              <a href="dashboardAdmin.html">
+                                    <span class="title" style="font-size: 23px; font-weight: 700;">SHOPET ADMIN</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="dashboardAdmin.html">
+                                    <span class="icon">
+                                          <ion-icon name="grid"></ion-icon>
+                                    </span>
+                                    <span class="title">Dashboard</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="product.html" >
+                                    <span class="icon">
+                                          <ion-icon name="cube"></ion-icon>
+                                    </span>
+                                    <span class="title">Product</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="employee.html">
+                                    <span class="icon">
+                                          <ion-icon name="person"></ion-icon>
+                                    </span>
+                                    <span class="title">Employee</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="addAdmin.html" style="color: #FFE61B ; font-weight: 700;">
+                                  <span class="icon"><ion-icon name="person-add"></ion-icon></span>
+                                  <span class="title">Add Admin</span>
+                              </a>
+                          </li>
+                        <li>
+                              <a href="index.html">
+                                    <span class="icon">
+                                          <ion-icon name="log-out"></ion-icon>
+                                    </span>
+                                    <span class="title">Sign Out</span>
+                              </a>
+                        </li>
+                  </ul>
+            </div>
+      </div>
+      <!-- SIDEBAR END -->
+
+      <main>
+            <form>
+                  <div class="container">
+                        <h1>Account Admin</h1>
+                        <p>Dashboard ini hanya boleh di akses oleh Owner</p>
+      
+                        
+                        <label class="form-label" for="idKaryawan"><b>ID Karyawan</b></label>
+                        <input class="form-control" type="text" placeholder="Enter ID Karyawan" name="idKar" id="idKar" required>
+      
+                        <label class="form-label" for="email"><b>Email</b></label>
+                        <input class="form-control" type="text" placeholder="Enter Email" name="email" id="email" required>
+      
+                        <label class="form-label"><b>Password</b></label>
+                        <input class="form-control" type="password" placeholder="Password" name="psw" id="psw" required>
+      
+                        
+      
+                        <button type="button" id="submitData" name="submitData" class="registerbtn btn btn-danger">Add Account Admin</button>
+                  </div>
+      
+      
+      
+            </form>
+      </main>
+      
+
+
+      <!-- -----------------------SCRIPT BOOTSRAP AND POPPER---------------------- -->
+
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+      </script>
+
+      <!-- -----------------------SCRIPT BOOTSRAP AND POPPER---------------------- -->
+
+
+      <!-- --------------------------------ICON IONS------------------------------ -->
+
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+      <!-- --------------------------------ICON IONS------------------------------ -->
+
+
+      <!-- -------------------------------FIREBASE------------------------------- -->
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-app.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-database.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-firestore.min.js"></script>
+
+      <!-- -------------------------------FIREBASE------------------------------- -->
+
+
+
+      <script type="module">
+            // Import the functions you need from the SDKs you need
+      import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+      import {
+          getAuth,
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          signOut
+      } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
+      import {getDatabase, set, ref, update} from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+  
+
+      // -----------------------------CONFIGURATION-----------------------------//
+
+      const firebaseConfig = {
+      apiKey: "AIzaSyDocRHdpm4YcGw5I057yRwYztLW_S5qCyg",
+      authDomain: "shopet-644e8.firebaseapp.com",
+      databaseURL: "https://shopet-644e8-default-rtdb.firebaseio.com/",
+      projectId: "shopet-644e8",
+      storageBucket: "shopet-644e8.appspot.com",
+      messagingSenderId: "367211419029",
+      appId: "1:367211419029:web:bfc9b34565d21c43ee529c",
+      measurementId: "G-T11Q937JFK"
+      };
+  
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth();
+      const database = getDatabase(app);
+
+      // -----------------------------CONFIGURATION-----------------------------//
+  
+
+      submitData.addEventListener('click', (e) => {
+  
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('psw').value;
+            var idKaryawan = document.getElementById('idKar').value
+  
+            //sign up user
+            createUserWithEmailAndPassword(auth, email, password,idKar)
+                  .then((userCredential) => {
+                        // Signed in
+                        const user = userCredential.user;
+                        // ... user.uid
+                        set(ref(database, 'users/' + user.uid), {
+                              idKaryawan: idKar.value,
+                              email: email,
+                              password: password
+                        })
+                        .then(() => {
+                              // Data saved successfully!
+                              alert('Account Berhasil Dibuat');
+                              location.href = "#";
+                              
+                        })
+                        .catch((error) => {
+                              // The write failed...
+                              alert(error);
+                        });
+                  })
+
+                  .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        // ..
+                        alert(errorMessage);
+                  });
+      });
+  
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- BOOTSTRAP CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+      <!-- STYLE CSS -->
+      <link rel="stylesheet" href="style/employee.css">
+
+      <!-- TITLE -->
+      <title> Employee </title>
+</head>
+
+<body>
+      <!-- SIDEBAR START -->
+      <div class="containerr">
+            <div class="navigation">
+                  <ul>
+                        <li>
+                              <a href="dashboardAdmin.html">
+                                    <span class="title" style="font-size: 23px; font-weight: 700;">SHOPET ADMIN</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="dashboardAdmin.html">
+                                    <span class="icon">
+                                          <ion-icon name="grid"></ion-icon>
+                                    </span>
+                                    <span class="title">Dashboard</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="product.html">
+                                    <span class="icon">
+                                          <ion-icon name="cube"></ion-icon>
+                                    </span>
+                                    <span class="title">Product</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="employee.html" style="color: #FFE61B ; font-weight: 700;">
+                                    <span class="icon">
+                                          <ion-icon name="person"></ion-icon>
+                                    </span>
+                                    <span class="title">Employee</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="loginOwner.html">
+                                  <span class="icon"><ion-icon name="person-add"></ion-icon></span>
+                                  <span class="title">Add Admin</span>
+                              </a>
+                          </li>
+                        <li>
+                              <a href="index.html">
+                                    <span class="icon">
+                                          <ion-icon name="log-out"></ion-icon>
+                                    </span>
+                                    <span class="title">Sign Out</span>
+                              </a>
+                        </li>
+                  </ul>
+            </div>
+      </div>
+      <!-- SIDEBAR END -->
+
+
+      <!-- MAIN START -->
+      
+      <main>
+            <div class="row">
+                  <div class="col-3">
+                        <table id="tableForm" class="table table-striped table-bordered table-hover">
+                              <thead>
+                                    <tr>
+                                          <th style="background-color: #242F9B; color: white;">
+                                                Add Employee
+                                          </th>
+                                    </tr>
+
+                                    <tr>
+                                          <th>
+                                                <form>
+                                                      <label class="form-label" for="prodId"> Employee ID</label>
+
+                                                      <input type="text" class="form-control" style="border-radius: 4px;" type="text" name="empId" id="empId" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+
+                                                      <small style="color: red;">Silakkan Klik Button Untuk Generate Code</small>
+                                                      <button class="btn btn-secondary" style="border-radius: 4px; margin-bottom: 10px;" type="button" id="button-addon2" onclick="func()">Generate Code Employee</button>
+
+
+                                                      <!-- <label class="form-label" for="empId"> Employee ID</label>
+                                                      <input class="form-control" type="text" name="empId" id="empId"required> -->
+
+                                                      <label class="form-label" for="empName">Employee Name</label>
+                                                      <input class="form-control" type="text" name="empName"id="empName" required>
+
+                                                      <label class="form-label" for="role">Jabatan</label>
+                                                      <input class="form-control" type="text" name="role" id="role"required>
+
+                                                      <label class="form-label" for="address">Address</label>
+                                                      <input class="form-control" type="text" name="address" id="address"required>
+
+                                                      <label class="form-label" for="noPhone">No Phone</label>
+                                                      <input class="form-control" type="noPhone" name="stock" id="noPhone"required>
+
+                                                      <button id="addBtn" class="btn btn-primary">Add</button>
+                                                      <button id="updateBtn" class="btn btn-success">Update</button>
+                                                      <button id="removeBtn" class="btn btn-danger">Delete</button>
+                                                      <button id="removeBtn" class="btn btn-warning">Clear</button>
+                                                </form>
+
+                                          </th>
+                                    </tr>
+                              </thead>
+
+                              <tbody>
+                                    <!-- Untuk Tamplate data dari firebase -->
+                              </tbody>
+                        </table>
+                  </div>
+
+
+                  <div class="col-9">
+                        <table id="tabel-data" class="table table-striped table-bordered table-hover">
+                              <thead>
+                                    <tr>
+                                          <th colspan="6" style="background-color: #242F9B; color: white;">
+                                                Employee List
+                                          </th>
+                                    </tr>
+                                    <tr>
+                                          <th>No</th>
+                                          <th>Employee ID</th>
+                                          <th>Name Employee</th>
+                                          <th>Jabatan</th>
+                                          <th>Address</th>
+                                          <th>No Phone</th>
+                                    </tr>
+                              </thead>
+
+                              <tbody>
+                              </tbody>
+                        </table>
+                  </div>
+
+            </div>
+      </main>
+      <!-- MAIN END -->
+
+
+      <!-- -----------------------SCRIPT BOOTSRAP AND POPPER---------------------- -->
+
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+      </script>
+
+      <!-- -----------------------SCRIPT BOOTSRAP AND POPPER---------------------- -->
+
+
+      <!-- --------------------------------ICON IONS------------------------------ -->
+
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+      <!-- --------------------------------ICON IONS------------------------------ -->
+
+
+      <!-- -------------------------------FIREBASE------------------------------- -->
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-app.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-database.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-firestore.min.js"></script>
+
+      <!-- -------------------------------FIREBASE------------------------------- -->
+
+
+      <!-- -----------------------------CONFIGURATION----------------------------- -->
+
+      <script src="config/firebase_config.js"></script>
+      <script src="js/functionEmployee.js"></script>
+
+      <!-- -----------------------------CONFIGURATION----------------------------- -->
+
+
+
+
+</body>
+
+</html>

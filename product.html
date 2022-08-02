@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- BOOTSTRAP CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+
+      <!-- STYLE CSS -->
+      <link rel="stylesheet" href="style/product.css">
+
+      <!-- TITLE -->
+      <title> Product </title>
+</head>
+
+<body>
+      <!-- SIDEBAR START -->
+      <div class="containerr">
+            <div class="navigation">
+                  <ul>
+                        <li>
+                              <a href="dashboardAdmin.html">
+                                    <span class="title" style="font-size: 23px; font-weight: 700;">SHOPET ADMIN</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="dashboardAdmin.html">
+                                    <span class="icon">
+                                          <ion-icon name="grid"></ion-icon>
+                                    </span>
+                                    <span class="title">Dashboard</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="product.html" style="color: #FFE61B ; font-weight: 700;">
+                                    <span class="icon">
+                                          <ion-icon name="cube"></ion-icon>
+                                    </span>
+                                    <span class="title">Product</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="employee.html">
+                                    <span class="icon">
+                                          <ion-icon name="person"></ion-icon>
+                                    </span>
+                                    <span class="title">Employee</span>
+                              </a>
+                        </li>
+                        <li>
+                              <a href="addAdmin.html">
+                                  <span class="icon"><ion-icon name="person-add"></ion-icon></span>
+                                  <span class="title">Add Admin</span>
+                              </a>
+                          </li>
+                        <li>
+                              <a href="index.html">
+                                    <span class="icon">
+                                          <ion-icon name="log-out"></ion-icon>
+                                    </span>
+                                    <span class="title">Sign Out</span>
+                              </a>
+                        </li>
+                  </ul>
+            </div>
+      </div>
+      <!-- SIDEBAR END -->
+
+
+      <!-- MAIN START -->
+      <main>
+            <div class="row">
+                  <div class="col-3">
+                        <table id="tableForm" class="table table-striped table-bordered table-hover">
+                              <thead>
+                                    <tr>
+                                          <th colspan="6" style="background-color: #FFF56D;">
+                                                Add Products
+                                          </th>
+                                    </tr>
+
+                                    <tr>
+                                          <th>
+                                                <form>
+                                                      <label class="form-label" for="prodId"> Product ID</label>
+
+                                                      <input type="text" class="form-control" style="border-radius: 4px;" type="text" name="userId" id="prodId" aria-label="Recipient's username" aria-describedby="button-addon2" disabled>
+
+                                                      <small style="color: red;">Silakkan Klik Button Untuk Generate Code</small>
+                                                      <button class="btn btn-secondary" style="border-radius: 4px; margin-bottom: 10px;" type="button" id="button-addon2" onclick="func()">Generate Code Product</button>
+
+                                                      <!-- <label class="form-label" for="prodId"> Product ID</label>
+                                                      <input class="form-control" type="text" name="userId" id="prodId" required> -->
+
+                                                      <label class="form-label" for="prodName">Name Product</label>
+                                                      <input class="form-control" type="text" name="prodName"id="prodName" required>
+
+                                                      <!-- <label for="formFile" class="form-label">Image</label>
+                                                      <input class="form-control" type="file" name="image" id="image" >       -->
+
+                                                      <label class="form-label" for="price">Price</label>
+                                                      <input class="form-control" type="number" name="price" id="price" required>
+
+                                                      <label class="form-label" for="type">Type</label>
+                                                      <input class="form-control" type="text" name="type" id="type"required>
+
+                                                      <label class="form-label" for="stock">Stock</label>
+                                                      <input class="form-control" type="number" name="stock" id="stock"required>
+
+                                                      <button id="addBtn" class="btn btn-primary">Add</button>
+                                                      <!-- <button id="updateBtn" class="btn btn-success">Update</button>
+                                                      <button id="removeBtn" class="btn btn-danger">Delete</button> -->
+                                                      <button id="removeBtn" class="btn btn-warning"><a href="editProduct.html" style="text-decoration: none; color: white;">Edit</a></button>
+                                                </form>
+
+                                          </th>
+                                    </tr>
+                              </thead>
+
+                              <tbody>
+                                    <!-- Untuk Tamplate data dari firebase -->
+                              </tbody>
+                        </table>
+                  </div>
+
+
+                  <div class="col-9">
+                        <table id="tabel-data" class="table table-striped table-bordered table-hover">
+                              <thead>
+                                    <tr>
+                                          <th colspan="6" style="background-color: #FFF56D;">
+                                                Product List
+                                          </th>
+                                    </tr>
+                                    <tr>
+                                          <th>No</th>
+                                          <th>Product ID</th>
+                                          <th>Name Product</th>
+                                          <th>Price</th>
+                                          <th>Type</th>
+                                          <th>Stock</th>
+                                    </tr>
+                              </thead>
+
+                              <tbody>
+                              </tbody>
+                        </table>
+                  </div>
+
+            </div>    
+      </main>
+      <!-- MAIN END -->
+
+
+      <!-- -----------------------SCRIPT BOOTSRAP AND POPPER---------------------- -->
+
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous">
+      </script>
+
+      <!-- -----------------------SCRIPT BOOTSRAP AND POPPER---------------------- -->
+
+
+      <!-- --------------------------------ICON IONS------------------------------ -->
+
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+      <!-- --------------------------------ICON IONS------------------------------ -->
+
+
+      <!-- -------------------------------FIREBASE------------------------------- -->
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-app.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-database.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.5/firebase-firestore.min.js"></script>
+
+      <!-- -------------------------------FIREBASE------------------------------- -->
+
+
+      <!-- -----------------------------CONFIGURATION----------------------------- -->
+
+      <script src="config/firebase_config.js"></script>
+      <script src="js/functionProduct.js"></script>
+
+      <!-- -----------------------------CONFIGURATION----------------------------- -->
+
+
+
+
+</body>
+
+</html>
